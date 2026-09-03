@@ -11,6 +11,11 @@ This project intentionally keeps the Lite feature set unchanged.
 - DankMaterialShell / Quickshell
 - `mpv`
 
+# Install MPV
+    # Fedora
+    sudo dnf install mpv
+    other distributions: https://mpv.io/installation/
+
 No `jq`, `curl`, `socat`, `bubblewrap`, Python helper, proxy daemon, or Omarchy runtime is required.
 
 ## Install manually for testing

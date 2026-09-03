@@ -1,0 +1,19 @@
+{
+  "id": "radioAtlasLite",
+  "name": "Radio Atlas Lite",
+  "description": "Launch the lightweight Radio Atlas world-radio app from DankBar.",
+  "version": "1.0.0",
+  "author": "Al Amin",
+  "type": "widget",
+  "capabilities": [
+    "dankbar-widget"
+  ],
+  "component": "./Widget.qml",
+  "icon": "radio",
+  "dependencies": [
+    "mpv"
+  ],
+  "permissions": [
+    "process"
+  ]
+}

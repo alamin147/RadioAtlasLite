@@ -1,22 +1,33 @@
 # Radio Atlas Lite for DankMaterialShell
 
 A lightweight **DankMaterialShell (DMS)** DankBar plugin that launches the standalone
-Radio Atlas Lite Quickshell app. Click the Radio Atlas icon in DankBar and the same app
-available through `./run.sh` opens.
+Radio Atlas Lite Quickshell app. Click the Radio Atlas icon in DankBar.
 
-This project intentionally keeps the Lite feature set unchanged.
+## Screenshots
+<p align="center">
+  <img width="100%" src="./main/docs/screenshot.png" alt="Radio Atlas Plugin Screenshot"/>
+</p>
 
 ## Requirements
 
 - DankMaterialShell / Quickshell
 - `mpv`
 
-# Install MPV
-    # Fedora
-    sudo dnf install mpv
-    other distributions: https://mpv.io/installation/
+## Install via DMS plugin registry
+```bash
+dms plugins install radioAtlasLite
+```
+
+## Install MPV
+```bash
+ # Fedora
+ sudo dnf install mpv
+```
+other distributions: https://mpv.io/installation/
 
 No `jq`, `curl`, `socat`, `bubblewrap`, Python helper, proxy daemon, or Omarchy runtime is required.
+
+
 
 ## Install manually for testing
 
@@ -34,12 +45,6 @@ You can also launch the bundled app directly:
 
 ```bash
 ~/.config/DankMaterialShell/plugins/RadioAtlasLite/run.sh
-```
-
-After this plugin is accepted into the official DMS plugin registry, users can install it with:
-
-```bash
-dms plugins install radioAtlasLite
 ```
 
 ## Repository structure

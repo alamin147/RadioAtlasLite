@@ -8,62 +8,55 @@ PluginComponent {
     id: root
 
     function launchRadioAtlas() {
-        if (!pluginService || !pluginId)
+        if (!pluginService || !pluginId) {
+            console.warn("Radio Atlas Lite: plugin context is unavailable")
             return
+        }
 
-        const pluginDir = pluginService.getPluginPath(pluginId)
-        if (!pluginDir)
+        let pluginDir = String(pluginService.getPluginPath(pluginId) || "")
+        if (pluginDir.startsWith("file://"))
+            pluginDir = pluginDir.substring(7)
+        if (!pluginDir) {
+            console.warn("Radio Atlas Lite: could not resolve the plugin directory")
             return
+        }
 
         // Keep the Lite app standalone: the DankBar widget only launches
         // the exact same run.sh users can execute manually.
         Quickshell.execDetached(["bash", pluginDir + "/run.sh"])
     }
 
+    // BasePill owns the pointer handler. Using its supported action hook keeps
+    // clicks working across DMS bar orientations and avoids a nested MouseArea
+    // consuming the event before PluginComponent can dispatch it.
+    pillClickAction: function() {
+        root.launchRadioAtlas()
+    }
+
     horizontalBarPill: Component {
-        StyledRect {
-            width: Theme.iconSize + Theme.spacingM * 2
-            height: parent.widgetThickness
-            radius: Theme.cornerRadius
-            color: mouse.containsMouse ? Theme.surfaceContainerHighest : Theme.surfaceContainerHigh
+        Item {
+            implicitWidth: root.iconSize
+            implicitHeight: root.iconSize
 
             DankIcon {
                 anchors.centerIn: parent
                 name: "radio"
-                size: Theme.iconSizeSmall
-                color: Theme.surfaceText
-            }
-
-            MouseArea {
-                id: mouse
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onClicked: root.launchRadioAtlas()
+                size: root.iconSize
+                color: Theme.widgetIconColor
             }
         }
     }
 
     verticalBarPill: Component {
-        StyledRect {
-            width: parent.widgetThickness
-            height: Theme.iconSize + Theme.spacingM * 2
-            radius: Theme.cornerRadius
-            color: mouse.containsMouse ? Theme.surfaceContainerHighest : Theme.surfaceContainerHigh
+        Item {
+            implicitWidth: root.iconSize
+            implicitHeight: root.iconSize
 
             DankIcon {
                 anchors.centerIn: parent
                 name: "radio"
-                size: Theme.iconSizeSmall
-                color: Theme.surfaceText
-            }
-
-            MouseArea {
-                id: mouse
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onClicked: root.launchRadioAtlas()
+                size: root.iconSize
+                color: Theme.widgetIconColor
             }
         }
     }
